@@ -288,6 +288,7 @@ void Session::on_event(const SessionEvent& event) {
 
     case SessionEvent::NOTIFY_CLOSED:
       if (--pending_workers_count_ == 0) {
+        logger_->debug("Session is disconnected");
         logger_->close_async();
         control_connection_.close();
         close_handles();
